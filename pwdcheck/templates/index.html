@@ -52,7 +52,7 @@
         .content {
             max-width: 700px;
             margin: auto;
-            padding-top: 2.5%;
+            padding-top: 1.9%;
         }
 
         body{
@@ -75,6 +75,7 @@
         <h1 class="tracking-in-expand" style="color: #ECDBBA;">Password Strength Checker</h1>
 
         <br>
+        <br>
 
         <form action="" method="post">
             
@@ -92,7 +93,7 @@
             <!-- ROW 2 -->
             <div class="row text-center">
                 <div class="input-field col s12 d-flex justify-content-center center">
-                    <button type="submit" value="Download" class="btn waves-effect waves-light btn-large pink accent-2 offset-s2 mx-auto">
+                    <button type="submit" value="Download" class="btn waves-effect waves-light btn-large accent-2 offset-s2 mx-auto" style="background-color: #C84B31;">
                         Submit
                     </button>
                 </div>
@@ -103,24 +104,31 @@
     </div>
 
     <br>
-    <pre style="color: #ECDBBA;" class="content">
-+ Password -
+    <pre style="color: #ECDBBA; text-align: center; overflow: auto; width: 700px;" class="content">
+- Password -
 {{ password }}
 
-+ Score - 
+- Score - 
 {{ score }}
 
-+ Guesses -
+- Guesses -
 {{ guesses }}
 
-+ Calculation Time -
+- Calculation Time -
 {{ calc_time }}
 
-+ Crack Time -
+- Crack Time -
 {{ crack_time }}
 
-+ Sequence Info -
+- Warning -
+{{ warning }}
+
+- Suggestions -
+{{ suggestions }}
+
+- Sequence Info -
 {{ sequence_info }}
+
 
 </pre>
         <br>
