@@ -82,4 +82,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run('0.0.0.0', port=8090, debug=True)
+    app.run('0.0.0.0', port=6969, debug=True)
