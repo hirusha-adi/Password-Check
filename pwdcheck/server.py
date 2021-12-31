@@ -18,10 +18,23 @@ def index():
 
         results = zxcvbn(f"{password}")
 
+        # sequence_info = ""
+        # for dic in results["sequence"]:
+        # for k, v in dic.items():
+        # sequence_info += f"{k} - {v}\n"
+        # sequence_info += "\n"
+
         sequence_info = ""
         for dic in results["sequence"]:
             for k, v in dic.items():
-                sequence_info += f"{k} - {v}\n"
+                if str(k) == "base_matches":
+                    if isinstance(v[0], dict):
+                        sequence_info += "\n- base_matches -\n"
+                        for k2, v2 in v[0].items():
+                            sequence_info += f"{k2} - {v2}\n"
+                        sequence_info += "\n"
+                else:
+                    sequence_info += f"{k} - {v}\n"
             sequence_info += "\n"
 
         try:
@@ -34,23 +47,23 @@ def index():
         except:
             crack_time = "-"
 
-        # try:
-        #     if results['feedback']['warning'] == '':
-        #         pass
-        #     else:
-        #         warning = results['feedback']['warning']
-        # except:
-        #     warning = "-"
+        try:
+            if results['feedback']['warning'] == '':
+                pass
+            else:
+                warning = results['feedback']['warning']
+        except:
+            warning = "-"
 
-        # try:
-        #     if len(results["feedback"]["suggestions"]) == 0:
-        #         pass
-        #     else:
-        #         suggestions = ""
-        #         for item in results["feedback"]["suggestions"]:
-        #             suggestions += f"{item}\n"
-        # except:
-        #     suggestions = "-"
+        try:
+            if len(results["feedback"]["suggestions"]) == 0:
+                pass
+            else:
+                suggestions = ""
+                for item in results["feedback"]["suggestions"]:
+                    suggestions += f"{item}\n"
+        except:
+            suggestions = "-"
 
         return render_template(
             'index.html',
@@ -60,8 +73,8 @@ def index():
             sequence_info=sequence_info,
             calc_time=calc_time,
             crack_time=crack_time,
-            # warning=warning,
-            # suggestions=suggestions
+            warning=warning,
+            suggestions=suggestions
 
         )
 
