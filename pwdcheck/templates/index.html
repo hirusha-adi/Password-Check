@@ -117,37 +117,44 @@
 
     <br>
 <h5>- Password -</h5>
-    <pre>
+<pre>
 {{ password }}
-    </pre>
+</pre>
+<br>
 <h5>- Score -</h5>
 <pre>
 {{ score }}
 </pre>
+<br>
 <h5>- Guesses -</h5>
 <pre>
 {{ guesses }}
 </pre>
+<br>
 <h5>- Calculation Time -</h5>
 <pre>
 {{ calc_time }}
 </pre>
+<br>
 <h5>- Crack Time -</h5>
 <pre>
 {{ crack_time }}
 </pre>
 {% if not(warning == "-") %} 
+<br>
 <h5>- Warning -</h5>
 <pre>
 {{ warning }}
 </pre>
 {% endif %}
 {% if not(suggestions == "-") %} 
+<br>
 <h5>- Suggestions -</h5>
 <pre>
 {{ suggestions }}
 </pre>
 {% endif %}
+<br>
 <h5>- Sequence Info -</h5>
 <pre>
 {{ sequence_info }}
