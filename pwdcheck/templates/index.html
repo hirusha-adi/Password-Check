@@ -27,26 +27,26 @@
         0% {
             letter-spacing: -0.5em;
             opacity: 0;
-        }
+            }
         40% {
             opacity: 0.6;
-        }
+            }
         100% {
             opacity: 1;
-        }
+            }
         }
 
         @keyframes tracking-in-expand {
         0% {
             letter-spacing: -0.5em;
             opacity: 0;
-        }
+            }
         40% {
             opacity: 0.6;
-        }
+            }
         100% {
             opacity: 1;
-        }
+            }
         }
 
         .content {
@@ -64,6 +64,20 @@
             /* display: flex; */
         }
 
+        pre {
+            color: #ECDBBA; 
+            text-align: center; 
+            overflow: auto; 
+            /* width: 600px; */
+            /* max-width: 750px; */
+            margin: auto;
+        }
+
+        h5 {
+            color: #ECDBBA; 
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
 
     </style>
 
@@ -79,7 +93,6 @@
 
         <form action="" method="post">
             
-            <!-- ROW 1 -->
             <div class="row">
                 <div class="input-field col s8 offset-s2">
                     <i class="material-icons prefix" style="color: #ECDBBA;">vpn_key</i>
@@ -90,7 +103,6 @@
                 </div>       
             </div>
 
-            <!-- ROW 2 -->
             <div class="row text-center">
                 <div class="input-field col s12 d-flex justify-content-center center">
                     <button type="submit" value="Download" class="btn waves-effect waves-light btn-large accent-2 offset-s2 mx-auto" style="background-color: #C84B31;">
@@ -104,32 +116,43 @@
     </div>
 
     <br>
-    <pre style="color: #ECDBBA; text-align: center; overflow: auto; width: 600px;" class="content">
-- Password -
+<h5>- Password -</h5>
+    <pre>
 {{ password }}
-
-- Score - 
+    </pre>
+<h5>- Score -</h5>
+<pre>
 {{ score }}
-
-- Guesses -
-{{ guesses }}
-
-- Calculation Time -
-{{ calc_time }}
-
-- Crack Time -
-{{ crack_time }}
-
-- Warning -
-{{ warning }}
-
-- Suggestions -
-{{ suggestions }}
-
-- Sequence Info -
-{{ sequence_info }}
-
 </pre>
+<h5>- Guesses -</h5>
+<pre>
+{{ guesses }}
+</pre>
+<h5>- Calculation Time -</h5>
+<pre>
+{{ calc_time }}
+</pre>
+<h5>- Crack Time -</h5>
+<pre>
+{{ crack_time }}
+</pre>
+{% if not(warning == "-") %} 
+<h5>- Warning -</h5>
+<pre>
+{{ warning }}
+</pre>
+{% endif %}
+{% if not(suggestions == "-") %} 
+<h5>- Suggestions -</h5>
+<pre>
+{{ suggestions }}
+</pre>
+{% endif %}
+<h5>- Sequence Info -</h5>
+<pre>
+{{ sequence_info }}
+</pre>
+
         <br>
         <br>
 
