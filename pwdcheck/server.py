@@ -47,6 +47,7 @@ def index():
         except:
             crack_time = "-"
 
+        warning = "-"
         try:
             if results['feedback']['warning'] == '':
                 pass
@@ -55,6 +56,7 @@ def index():
         except:
             warning = "-"
 
+        suggestions = "-"
         try:
             if len(results["feedback"]["suggestions"]) == 0:
                 pass
