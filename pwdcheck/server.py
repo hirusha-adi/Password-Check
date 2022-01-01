@@ -1,11 +1,40 @@
 import datetime
 import os
 
+from flask import Flask, render_template, request, url_for
+from flask.scaffold import F
 from zxcvbn import zxcvbn
-from flask import (Flask, redirect, render_template, request,
-                   session, url_for)
+
+# Multi Platform Support
+SLASH = "\\"
+if os.name == 'posix':
+    SLASH = "/"
 
 app = Flask(__name__)
+
+
+# loading all the passwords
+passwords_dir = f"{os.getcwd()}{SLASH}pwdcheck{SLASH}passwordlists{SLASH}"
+password_lists = os.listdir(passwords_dir)
+all_passwords = []
+for fileName in password_lists:
+    try:
+        with open(f"{passwords_dir}{fileName}", "r", encoding="utf-8") as f1:
+            allLines = f1.readlines()
+            for oneLine in allLines:
+                cleaned = oneLine.strip()
+                if cleaned not in all_passwords:
+                    all_passwords.append(cleaned)
+            allLines = []
+    except:
+        pass
+
+    all_passwords_count = len(all_passwords)
+
+if all_passwords_count == 0:
+    PWD_LIST_CHECK = False
+else:
+    PWD_LIST_CHECK = True
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -16,13 +45,11 @@ def index():
     if request.method == 'POST':
         password = request.form.get('password')
 
-        results = zxcvbn(f"{password}")
-
-        # sequence_info = ""
-        # for dic in results["sequence"]:
-        # for k, v in dic.items():
-        # sequence_info += f"{k} - {v}\n"
-        # sequence_info += "\n"
+        try:
+            results = zxcvbn(f"{password}")
+        except Exception as pwderr:
+            return render_template("error.html",
+                                   pwderr=pwderr)
 
         sequence_info = ""
         for dic in results["sequence"]:
@@ -77,7 +104,6 @@ def index():
             crack_time=crack_time,
             warning=warning,
             suggestions=suggestions
-
         )
 
 
