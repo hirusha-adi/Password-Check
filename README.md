@@ -15,4 +15,3 @@
 # References
 
 1. Color theme from: [ColorHunt](https://colorhunt.co/palettes/dark)
-2. [Sad Mac 404 Error Page](https://codepen.io/jkantner/pen/aPLWJm)
