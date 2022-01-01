@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloader v1.1</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <style>
+
+        .tracking-in-expand {
+            font-size: 300%;
+            text-align: center;
+            color: #FFFFFF;
+	        -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+	        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+        }
+
+        @-webkit-keyframes tracking-in-expand {
+        0% {
+            letter-spacing: -0.5em;
+            opacity: 0;
+        }
+        40% {
+            opacity: 0.6;
+        }
+        100% {
+            opacity: 1;
+        }
+        }
+        @keyframes tracking-in-expand {
+        0% {
+            letter-spacing: -0.5em;
+            opacity: 0;
+        }
+        40% {
+            opacity: 0.6;
+        }
+        100% {
+            opacity: 1;
+        }
+        }
+
+        .content {
+            max-width: 700px;
+            margin: auto;
+            padding-top: 1.9%;
+        }
+
+        body{
+            /* background-image: url({{ url_for('static', filename='image.JPG') }}); */
+            background-color: #191919;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            /* display: flex; */
+        }
+
+        pre {
+            color: #ECDBBA; 
+            text-align: center; 
+            overflow: auto; 
+            /* width: 600px; */
+            /* max-width: 750px; */
+            margin: auto;
+        }
+
+        h5 {
+            color: #ECDBBA; 
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        a:link  {
+        color: #ECDBBA;
+        }
+
+        a:visited {
+        color: #ECDBBA;
+        }
+
+        a:hover {
+        color: #2D4263;
+        }
+
+        a:active {
+        color: #ECDBBA;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="content col s12 center-align">
+
+        <h1 class="tracking-in-expand" style="color: #ECDBBA;"><a href="https://github.com/hirusha-adi/Password-Check" target="_blank" rel="noopener noreferrer">Password Strength Checker</a></h1>
+        <h3 class="tracking-in-expand">An error has occured!</h3>
+        <br>        
+<h5>- Error -</h5>
+        <pre style="text-align: left; color: #FFFFFF;">
+{{ pwderr }}
+        </pre>
+
+    </div>
+   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+
+        $(document).ready(
+            function () {
+                M.AutoInit();
+            }
+        );
+
+    </script>
+
+</body>
+</html>
