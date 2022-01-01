@@ -30,10 +30,10 @@ for fileName in password_lists:
         pass
 
 # Incase if any password-list does not exist
-    try:
-        all_passwords_count = len(all_passwords)
-    except:
-        all_passwords_count = 0
+try:
+    all_passwords_count = len(all_passwords)
+except:
+    all_passwords_count = 0
 
 try:
     if all_passwords_count == 0:
