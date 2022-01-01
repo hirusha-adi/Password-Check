@@ -1,28 +1,79 @@
-import datetime
 import os
 
+from flask import Flask, render_template, request, url_for
 from zxcvbn import zxcvbn
-from flask import (Flask, redirect, render_template, request,
-                   session, url_for)
+
+# Multi Platform Support
+SLASH = "\\"
+if os.name == 'posix':
+    SLASH = "/"
+
 
 app = Flask(__name__)
 
 
+# loading all the passwords from the password lists
+# from the files (ending with `.txt` or `.passwords`) in pwdcheck/passwordlists
+passwords_dir = f"{os.getcwd()}{SLASH}pwdcheck{SLASH}passwordlists{SLASH}"
+password_lists = os.listdir(passwords_dir)
+all_passwords = []
+for fileName in password_lists:
+    try:
+        with open(f"{passwords_dir}{fileName}", "r", encoding="utf-8") as f1:
+            allLines = f1.readlines()
+            for oneLine in allLines:
+                cleaned = oneLine.strip()
+                if cleaned not in all_passwords:
+                    all_passwords.append(cleaned)
+            allLines = []
+    except:
+        pass
+
+# Incase if any password-list does not exist
+try:
+    all_passwords_count = len(all_passwords)
+except:
+    all_passwords_count = 0
+
+try:
+    if all_passwords_count == 0:
+        PWD_LIST_CHECK = False
+    else:
+        PWD_LIST_CHECK = True
+except:
+    PWD_LIST_CHECK = False
+    all_passwords_count = 0
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    """
+    The main web-page
+
+    if the request method is GET, it will return the `index.html` without any data regarding the passwords
+
+    if the request method is POST,
+        the password will be passed to the Low Budget Passoword Strength Estimation function (https://pypi.org/project/zxcvbn/)
+        if the above step fails, it will return the `error.html` with the exact Python3 Exception and it will be displayed in the webpage
+        make everything organized, the "sequence" key from the output is handled to display the `key - value`
+        if PWD_LIST_CHECK is True, the password will be cheked in the database(list) and if it exists, it will be displayed
+        a POST request will be send to `index.html` after all the data is ready
+
+    Returns:
+        - flask.render_template: `error.html` with an error if any
+        - flask.render_template: `index.html` with the data
+    """
     if request.method == 'GET':
         return render_template("index.html")
 
     if request.method == 'POST':
-        password = request.form.get('password')
+        passwordi = request.form.get('password')
 
-        results = zxcvbn(f"{password}")
-
-        # sequence_info = ""
-        # for dic in results["sequence"]:
-        # for k, v in dic.items():
-        # sequence_info += f"{k} - {v}\n"
-        # sequence_info += "\n"
+        try:
+            results = zxcvbn(f"{passwordi}")
+        except Exception as pwderr:
+            return render_template("error.html",
+                                   pwderr=pwderr)
 
         sequence_info = ""
         for dic in results["sequence"]:
@@ -67,6 +118,16 @@ def index():
         except:
             suggestions = "-"
 
+        leaked = "-"
+        try:
+            if PWD_LIST_CHECK:
+                if str(passwordi) in all_passwords:
+                    leaked = f"Your password has been found in a database of {all_passwords_count} leaked passwords"
+                else:
+                    leaked = "-"
+        except:
+            leaked = "-"
+
         return render_template(
             'index.html',
             password=results['password'],
@@ -76,9 +137,14 @@ def index():
             calc_time=calc_time,
             crack_time=crack_time,
             warning=warning,
-            suggestions=suggestions
-
+            suggestions=suggestions,
+            leaked=leaked
         )
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 
 if __name__ == "__main__":
