@@ -25,8 +25,7 @@ if name == 'posix':
     * Release: {pt.release}
     * Version: {pt.version}
     * Machine: {pt.machine}""")
-
-print("\n")
+    print("\n")
 
 print(f"""+ Other Info -
     * Python3 Version: {platform.python_version()}
