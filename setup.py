@@ -1,3 +1,6 @@
+# Setup the Password Strength Checker
+# This script will download two recommended password lists to the pwdchecl/passwordlists directory
+
 import os
 import requests
 print("* Starting to setup Password Strength Checker")

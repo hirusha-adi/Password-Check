@@ -1,4 +1,3 @@
-import datetime
 import os
 
 from flask import Flask, render_template, request, url_for
@@ -13,7 +12,8 @@ if os.name == 'posix':
 app = Flask(__name__)
 
 
-# loading all the passwords
+# loading all the passwords from the password lists
+# from the files (ending with `.txt` or `.passwords`) in pwdcheck/passwordlists
 passwords_dir = f"{os.getcwd()}{SLASH}pwdcheck{SLASH}passwordlists{SLASH}"
 password_lists = os.listdir(passwords_dir)
 all_passwords = []
@@ -47,6 +47,22 @@ except:
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    """
+    The main web-page
+
+    if the request method is GET, it will return the `index.html` without any data regarding the passwords
+
+    if the request method is POST,
+        the password will be passed to the Low Budget Passoword Strength Estimation function (https://pypi.org/project/zxcvbn/)
+        if the above step fails, it will return the `error.html` with the exact Python3 Exception and it will be displayed in the webpage
+        make everything organized, the "sequence" key from the output is handled to display the `key - value`
+        if PWD_LIST_CHECK is True, the password will be cheked in the database(list) and if it exists, it will be displayed
+        a POST request will be send to `index.html` after all the data is ready
+
+    Returns:
+        - flask.render_template: `error.html` with an error if any
+        - flask.render_template: `index.html` with the data
+    """
     if request.method == 'GET':
         return render_template("index.html")
 
