@@ -2,13 +2,13 @@ import datetime
 import os
 
 from flask import Flask, render_template, request, url_for
-from flask.scaffold import F
 from zxcvbn import zxcvbn
 
 # Multi Platform Support
 SLASH = "\\"
 if os.name == 'posix':
     SLASH = "/"
+
 
 app = Flask(__name__)
 
@@ -43,10 +43,10 @@ def index():
         return render_template("index.html")
 
     if request.method == 'POST':
-        password = request.form.get('password')
+        passwordi = request.form.get('password')
 
         try:
-            results = zxcvbn(f"{password}")
+            results = zxcvbn(f"{passwordi}")
         except Exception as pwderr:
             return render_template("error.html",
                                    pwderr=pwderr)
@@ -94,6 +94,16 @@ def index():
         except:
             suggestions = "-"
 
+        leaked = "-"
+        try:
+            if PWD_LIST_CHECK:
+                if str(passwordi) in all_passwords:
+                    leaked = f"Your password has been found in a database of {all_passwords_count} leaked passwords"
+                else:
+                    leaked = "-"
+        except:
+            leaked = "-"
+
         return render_template(
             'index.html',
             password=results['password'],
@@ -103,7 +113,8 @@ def index():
             calc_time=calc_time,
             crack_time=crack_time,
             warning=warning,
-            suggestions=suggestions
+            suggestions=suggestions,
+            leaked=leaked
         )
 
 
