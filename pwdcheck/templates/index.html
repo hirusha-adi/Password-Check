@@ -156,6 +156,13 @@
 <pre>
 {{ crack_time }}
 </pre>
+{% if not(leaked == "-") %} 
+<br>
+<h5>- Leaked -</h5>
+<pre>
+{{ leaked }}
+</pre>
+{% endif %}
 {% if not(warning == "-") %} 
 <br>
 <h5>- Warning -</h5>
