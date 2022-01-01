@@ -14,9 +14,17 @@
 
 # Setup
 
+## Ubuntu
 1. ```sudo apt update && sudo apt upgrade```
 2. ```sudo apt install python3 python3-pip```
 3. ```pip3 install -r requirements.txt```
+4. ```python3 setup.py```
+5. ```python3 start.py```
+
+## Arch
+1. ```sudo pacman -Syu```
+2. ```sudo pacman -S python python-pip```
+3. ```python3 -m pip3 install -r requirements.txt```
 4. ```python3 setup.py```
 5. ```python3 start.py```
 
