@@ -38,20 +38,18 @@ print("\n")
 # these files should end with a `.txt` or `.passwords` file extention
 passwords_dir = f"{getcwd()}{SLASH}pwdcheck{SLASH}passwordlists{SLASH}"
 password_lists = listdir(passwords_dir)
-count = 1
-print("+ Password Lists -", "\n    * Total:", len(password_lists))
-for fileName in password_lists:
-    if (fileName.lower().endswith("txt")) or (fileName.lower().endswith("passwords")):
-        print(f"    {count}: {fileName}")
-    count += 1
-
-print("\n")
+if int(len(password_lists)) != 0:
+    count = 1
+    print("+ Password Lists -", "\n    * Total:", len(password_lists))
+    for fileName in password_lists:
+        if (fileName.lower().endswith("txt")) or (fileName.lower().endswith("passwords")):
+            print(f"    {count}: {fileName}")
+        count += 1
+    print("\n")
 
 if PWD_LIST_CHECK == True:
     print("+ Loaded all the passwords -",
           "\n    * Count:", all_passwords_count)
-
-print("\n")
-print("\n")
+    print("\n")
 
 app.run('0.0.0.0', port=6969)
