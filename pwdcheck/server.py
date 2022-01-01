@@ -29,12 +29,20 @@ for fileName in password_lists:
     except:
         pass
 
-    all_passwords_count = len(all_passwords)
+# Incase if any password-list does not exist
+    try:
+        all_passwords_count = len(all_passwords)
+    except:
+        all_passwords_count = 0
 
-if all_passwords_count == 0:
+try:
+    if all_passwords_count == 0:
+        PWD_LIST_CHECK = False
+    else:
+        PWD_LIST_CHECK = True
+except:
     PWD_LIST_CHECK = False
-else:
-    PWD_LIST_CHECK = True
+    all_passwords_count = 0
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -116,6 +124,11 @@ def index():
             suggestions=suggestions,
             leaked=leaked
         )
+
+
+@app.route('/404', methods=['GET'])
+def four04():
+    return render_template("404.html")
 
 
 if __name__ == "__main__":
