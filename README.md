@@ -1,5 +1,18 @@
-# Password-Check
+# Password-Check v1.0
 
-Website to check the strength of all your passwords easily and instantly!
+- Website to check the strength of all your passwords easily and instantly!
 
-## Colors from: [ColorHunt](https://colorhunt.co/palettes/dark)
+- This is a password strength/stats checker that is made using [Low Budget Password Strength Estimation](https://github.com/dropbox/zxcvbn) ( Learn more from [here](https://www.semanticscholar.org/paper/zxcvbn%3A-Low-Budget-Password-Strength-Estimation-Wheeler/f7403f27b0517be683836f9c1cb8b0f5a5d82b1a) or [here](https://www.usenix.org/conference/usenixsecurity16/technical-sessions/presentation/wheeler#:~:text=zxcvbn%20is%20an%20alternative%20password,suitable%20for%20mitigating%20online%20attacks.) )
+
+# Priavcy Policy
+
+- No user data is collected
+
+- Password Strength Lookups are not being logged 
+
+- Nothing is being logged, this will be the same in the future
+
+# References
+
+1. Color theme from: [ColorHunt](https://colorhunt.co/palettes/dark)
+2. [Sad Mac 404 Error Page](https://codepen.io/jkantner/pen/aPLWJm)
