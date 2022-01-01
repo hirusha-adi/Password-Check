@@ -12,6 +12,14 @@
 
 - Nothing is being logged, this will be the same in the future
 
+# Setup
+
+1. ```sudo apt update && sudo apt upgrade```
+2. ```sudo apt install python3 python3-pip```
+3. ```pip3 install -r requirements.txt```
+4. ```python3 setup.py```
+5. ```python3 start.py```
+
 # References
 
 1. Color theme from: [ColorHunt](https://colorhunt.co/palettes/dark)
