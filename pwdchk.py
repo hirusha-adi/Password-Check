@@ -1,4 +1,3 @@
-import os
 import sys
 
 from colorama import init, Fore, Back, Style
@@ -74,8 +73,6 @@ def print_box(text: str):
 
 
 def passwordCheck(passwords, clean):
-    passwords_len = len(passwords)
-
     for count, password in enumerate(passwords, 1):
         stat = passwordStat(password=password)
         if clean:

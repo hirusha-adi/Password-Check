@@ -1,3 +1,7 @@
+# v3.0
+
+- has both a web ui and a command line interface app
+
 # v2.0
 
 - Checks the password in all of the password lists (passwords should not be hashed) in the `pwdcheck/passwordlists/` directory. Every file eneding with a file extension of `.passwords` or `.txt` will be loaded. Passwords in these files should be divided by lines (one password in one single line)
