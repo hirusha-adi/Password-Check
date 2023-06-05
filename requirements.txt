@@ -1,2 +1,2 @@
-flask
+colorama==0.4.6
 zxcvbn==4.4.28
