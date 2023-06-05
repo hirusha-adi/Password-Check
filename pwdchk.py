@@ -80,9 +80,35 @@ def passwordCheck(passwords, clean):
         print(f"Password #{count}: {password}")
         stat = passwordStat(password=password, clean=clean)
         print_box(f"""
-
 #{count}: {password}
+
+############## Score ##############
+
+{stat['details']['score']}
+
+
+############## Guesses ##############
+
+{stat['details']['guesses']}
+
+
+
+
+
+############## Crack Time ##############
+
+{stat['crack_time']}
+
+
+
+############## Sequence Info ##############
+
 {stat['sequence_info']}
+
+
+##########################################
+
+Took {stat['calc_time']} seconds
 
                   """)
 
