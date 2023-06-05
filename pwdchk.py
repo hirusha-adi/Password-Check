@@ -93,13 +93,13 @@ def passwordCheck(passwords, clean):
         else:
             print_box(
                 f"#{count}: {password}\n\n" +
-                f"{'#'*29} Score {'#'*29}\n{stat['details']['score']}\n\n\n" +
-                f"{'#'*28} Guesses {'#'*28}\n{stat['details']['guesses']}\n\n\n" +
-                f"{'#'*27} Crack Time {'#'*26}\n{stat['crack_time']}\n\n\n" +
-                f"{'#'*27} Warnings {'#'*28}\n{stat['warning']}\n\n\n" +
-                f"{'#'*26} Suggestions {'#'*26}\n{stat['suggestions']}\n\n\n" +
-                f"{'#'*25} Sequence Info {'#'*25}\n{stat['sequence_info']}\n\n\n" +
-                f"{'#'*66}\n{stat['calc_time']}\n\n\n"
+                f"{Style.RESET_ALL}{Back.MAGENTA}{Fore.MAGENTA}{'#'*29}{Fore.RESET} Score {Back.MAGENTA}{Fore.MAGENTA}{'#'*29}{Style.RESET_ALL}\n{stat['details']['score']}\n\n\n" +
+                f"{Style.RESET_ALL}{Back.MAGENTA}{Fore.MAGENTA}{'#'*28}{Fore.RESET} Guesses {Back.MAGENTA}{Fore.MAGENTA}{'#'*28}{Style.RESET_ALL}\n{stat['details']['guesses']}\n\n\n" +
+                f"{Style.RESET_ALL}{Back.MAGENTA}{Fore.MAGENTA}{'#'*27}{Fore.RESET} Crack Time {Back.MAGENTA}{Fore.MAGENTA}{'#'*26}{Style.RESET_ALL}\n{stat['crack_time']}\n\n\n" +
+                f"{Style.RESET_ALL}{Back.MAGENTA}{Fore.MAGENTA}{'#'*27}{Fore.RESET} Warnings {Back.MAGENTA}{Fore.MAGENTA}{'#'*28}{Style.RESET_ALL}\n{stat['warning']}\n\n\n" +
+                f"{Style.RESET_ALL}{Back.MAGENTA}{Fore.MAGENTA}{'#'*26}{Fore.RESET} Suggestions {Back.MAGENTA}{Fore.MAGENTA}{'#'*26}{Style.RESET_ALL}\n{stat['suggestions']}\n\n\n" +
+                f"{Style.RESET_ALL}{Back.MAGENTA}{Fore.MAGENTA}{'#'*25}{Fore.RESET} Sequence Info {Back.MAGENTA}{Fore.MAGENTA}{'#'*25}{Style.RESET_ALL}\n{stat['sequence_info']}\n\n\n" +
+                f"{Style.RESET_ALL}{Back.MAGENTA}{Fore.MAGENTA}{'#'*66}{Style.RESET_ALL}\nIt took {stat['calc_time']} seconds\n\n\n"
             )
 
 
