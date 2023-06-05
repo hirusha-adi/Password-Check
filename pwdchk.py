@@ -79,38 +79,15 @@ def passwordCheck(passwords, clean):
     for count, password in enumerate(passwords, ):
         print(f"Password #{count}: {password}")
         stat = passwordStat(password=password, clean=clean)
-        print_box(f"""
-#{count}: {password}
-
-############## Score ##############
-
-{stat['details']['score']}
-
-
-############## Guesses ##############
-
-{stat['details']['guesses']}
-
-
-
-
-
-############## Crack Time ##############
-
-{stat['crack_time']}
-
-
-
-############## Sequence Info ##############
-
-{stat['sequence_info']}
-
-
-##########################################
-
-Took {stat['calc_time']} seconds
-
-                  """)
+        print_box(
+            f"#{count}: {password}\n{'#'*29}  Score {'#'*29}\n{stat['details']['score']}\n\n\n" +
+            f"{'#'*28}  Guesses {'#'*28}\n{stat['details']['guesses']}\n\n\n" +
+            f"{'#'*27}  Crack Time {'#'*26}\n{stat['crack_time']}\n\n\n" +
+            f"{'#'*27}  Warnings {'#'*28}\n{stat['warning']}\n\n\n" +
+            f"{'#'*26}  Suggestions {'#'*26}\n{stat['suggestions']}\n\n\n" +
+            f"{'#'*25}  Sequence Info {'#'*25}\n{stat['sequence_info']}\n\n\n" +
+            f"{'#'*66}\n{stat['calc_time']}\n\n\n"
+        )
 
 
 def main():
