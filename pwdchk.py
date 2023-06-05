@@ -1,10 +1,11 @@
 import os
 import sys
 
+from colorama import init, Fore, Back, Style
 from zxcvbn import zxcvbn
 
 
-def passwordCheck(password):
+def passwordStat(password, clean):
     try:
         results = zxcvbn(f"{password}")
     except Exception as e:
@@ -62,10 +63,44 @@ def passwordCheck(password):
     }
 
 
+def print_box(text: str):
+    lines = text.split('\n')
+    max_length = max(len(line) for line in lines)
+    border = '+' + '-' * (max_length + 2) + '+'
+    print(border)
+    for line in lines:
+        print('| ' + line.ljust(max_length) + ' |')
+    print(border)
+
+
+def passwordCheck(passwords, clean):
+    passwords_len = len(passwords)
+
+    for count, password in enumerate(passwords, ):
+        print(f"Password #{count}: {password}")
+        stat = passwordStat(password=password, clean=clean)
+        print_box(f"""
+
+#{count}: {password}
+{stat['sequence_info']}
+
+                  """)
+
+
 def main():
-    password = input("Password> ")
-    passwordCheck(password=password)
+    args = sys.argv[1:]
+
+    clean = False
+    if ("--clean" in args) or ("-c" in args):
+        try:
+            args.remove("--clean")
+        except:
+            args.remove("-c")
+        clean = True
+
+    passwordCheck(passwords=args, clean=clean)
 
 
 if __name__ == "__main__":
+    init()
     main()
