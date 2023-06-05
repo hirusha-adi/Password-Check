@@ -5,7 +5,7 @@ from colorama import init, Fore, Back, Style
 from zxcvbn import zxcvbn
 
 
-def passwordStat(password, clean):
+def passwordStat(password):
     try:
         results = zxcvbn(f"{password}")
     except Exception as e:
@@ -76,18 +76,31 @@ def print_box(text: str):
 def passwordCheck(passwords, clean):
     passwords_len = len(passwords)
 
-    for count, password in enumerate(passwords, ):
+    for count, password in enumerate(passwords):
         print(f"Password #{count}: {password}")
-        stat = passwordStat(password=password, clean=clean)
-        print_box(
-            f"#{count}: {password}\n{'#'*29}  Score {'#'*29}\n{stat['details']['score']}\n\n\n" +
-            f"{'#'*28}  Guesses {'#'*28}\n{stat['details']['guesses']}\n\n\n" +
-            f"{'#'*27}  Crack Time {'#'*26}\n{stat['crack_time']}\n\n\n" +
-            f"{'#'*27}  Warnings {'#'*28}\n{stat['warning']}\n\n\n" +
-            f"{'#'*26}  Suggestions {'#'*26}\n{stat['suggestions']}\n\n\n" +
-            f"{'#'*25}  Sequence Info {'#'*25}\n{stat['sequence_info']}\n\n\n" +
-            f"{'#'*66}\n{stat['calc_time']}\n\n\n"
-        )
+        stat = passwordStat(password=password)
+        if clean:
+            print_box(
+                f"#{count}: {password}\n\n" +
+                f"{'#'*29} Score {'#'*29}\n{stat['details']['score']}\n\n\n" +
+                f"{'#'*28} Guesses {'#'*28}\n{stat['details']['guesses']}\n\n\n" +
+                f"{'#'*27} Crack Time {'#'*26}\n{stat['crack_time']}\n\n\n" +
+                f"{'#'*27} Warnings {'#'*28}\n{stat['warning']}\n\n\n" +
+                f"{'#'*26} Suggestions {'#'*26}\n{stat['suggestions']}\n\n\n" +
+                f"{'#'*25} Sequence Info {'#'*25}\n{stat['sequence_info']}\n\n\n" +
+                f"{'#'*66}\n{stat['calc_time']}\n\n\n"
+            )
+        else:
+            print_box(
+                f"#{count}: {password}\n\n" +
+                f"{'#'*29} Score {'#'*29}\n{stat['details']['score']}\n\n\n" +
+                f"{'#'*28} Guesses {'#'*28}\n{stat['details']['guesses']}\n\n\n" +
+                f"{'#'*27} Crack Time {'#'*26}\n{stat['crack_time']}\n\n\n" +
+                f"{'#'*27} Warnings {'#'*28}\n{stat['warning']}\n\n\n" +
+                f"{'#'*26} Suggestions {'#'*26}\n{stat['suggestions']}\n\n\n" +
+                f"{'#'*25} Sequence Info {'#'*25}\n{stat['sequence_info']}\n\n\n" +
+                f"{'#'*66}\n{stat['calc_time']}\n\n\n"
+            )
 
 
 def main():
