@@ -73,6 +73,10 @@ def print_box(text: str):
 
 
 def passwordCheck(passwords, clean):
+    if len(passwords) == 0:
+        tmp = input("Password> ")
+        passwords.append(tmp)
+
     for count, password in enumerate(passwords, 1):
         stat = passwordStat(password=password)
         if clean:
