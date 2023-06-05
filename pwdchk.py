@@ -76,8 +76,7 @@ def print_box(text: str):
 def passwordCheck(passwords, clean):
     passwords_len = len(passwords)
 
-    for count, password in enumerate(passwords):
-        print(f"Password #{count}: {password}")
+    for count, password in enumerate(passwords, 1):
         stat = passwordStat(password=password)
         if clean:
             print_box(
@@ -93,15 +92,16 @@ def passwordCheck(passwords, clean):
         else:
             _start = f"{Style.RESET_ALL}{Back.MAGENTA}{Fore.MAGENTA}"
             _title_end = f"{Back.MAGENTA}{Fore.MAGENTA}"
-            print_box(
-                f"#{count}: {password}\n\n" +
+            print(f"{Style.RESET_ALL}{Back.YELLOW}{Fore.YELLOW}{'#'*66}{Style.RESET_ALL}")
+            print(
+                f"### {password} ###\n\n" +
                 f"{_start}{'#'*29}{Fore.RESET} Score {_title_end}{'#'*29}{Style.RESET_ALL}\n{stat['details']['score']}\n\n\n" +
                 f"{_start}{'#'*28}{Fore.RESET} Guesses {_title_end}{'#'*28}{Style.RESET_ALL}\n{stat['details']['guesses']}\n\n\n" +
                 f"{_start}{'#'*27}{Fore.RESET} Crack Time {_title_end}{'#'*26}{Style.RESET_ALL}\n{stat['crack_time']}\n\n\n" +
                 f"{_start}{'#'*27}{Fore.RESET} Warnings {_title_end}{'#'*28}{Style.RESET_ALL}\n{stat['warning']}\n\n\n" +
-                f"{_start}{'#'*26}{Fore.RESET} Suggestions {_title_end}{'#'*26}{Style.RESET_ALL}\n{stat['suggestions']}\n\n\n" +
-                f"{_start}{'#'*25}{Fore.RESET} Sequence Info {_title_end}{'#'*25}{Style.RESET_ALL}\n{stat['sequence_info']}\n\n\n" +
-                f"{_start}{'#'*66}{Style.RESET_ALL}\nIt took {stat['calc_time']} seconds\n\n\n"
+                f"{_start}{'#'*26}{Fore.RESET} Suggestions {_title_end}{'#'*26}{Style.RESET_ALL}\n{stat['suggestions']}\n\n" +
+                f"{_start}{'#'*25}{Fore.RESET} Sequence Info {_title_end}{'#'*25}{Style.RESET_ALL}\n{stat['sequence_info']}\n" +
+                f"{_start}{'#'*66}{Style.RESET_ALL}\nIt took {stat['calc_time']} seconds\n"
             )
 
 
