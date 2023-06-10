@@ -1,54 +1,57 @@
 <html>
+  <head>
+    <title>zxcvbn tests</title>
 
-<head>
-  <title>zxcvbn tests</title>
+    <script type="text/javascript" src="./jquery.js">
+    </script>
+    <script type="text/javascript" src="./mustache.js">
+    </script>
+    <script data-main="demo" src="./require.js">
+    </script>
+  </head>
+  <body>
+    <style type="text/css">
 
-  <script type="text/javascript" src="./jquery.js">
-  </script>
-  <script type="text/javascript" src="./mustache.js">
-  </script>
-  <script data-main="demo" src="./require.js">
-  </script>
-</head>
+      body {
+        font-family: monospace;
+      }
 
-<body>
-  <style type="text/css">
-    body {
-      font-family: monospace;
-    }
+      .match-sequence table {
+        display: inline;
+        margin-right: 30px;
+      }
 
-    .match-sequence table {
-      display: inline;
-      margin-right: 30px;
-    }
+      .match-sequence {
+        margin-bottom: 100px;
+      }
 
-    .match-sequence {
-      margin-bottom: 100px;
-    }
+      .match-sequence > table:nth-child(odd) {
+        background-color: #ccc;
+      }
+      .match-sequence > table:nth-child(even) {
+        background-color: #eee;
+      }
 
-    .match-sequence>table:nth-child(odd) {
-      background-color: #ccc;
-    }
+      #examples-container {
+        margin-top: 200px;
+      }
 
-    .match-sequence>table:nth-child(even) {
-      background-color: #eee;
-    }
+    </style>
+    <h1>introduction</h1>
+    <h1><a href="https://www.usenix.org/conference/usenixsecurity16/technical-sessions/presentation/wheeler">USENIX Security 2016 paper + talk</a></h1>
+    <h1><a href="http://tech.dropbox.com/?p=165">Dropbox blog post</a></h1>
+    <h1><a href="https://github.com/dropbox/zxcvbn">zxcvbn on github</a></h1>
+    <br />
+    <h1>demo</h1>
 
-    #examples-container {
-      margin-top: 200px;
-    }
-  </style>
-  <h1>demo</h1>
+    <input id="search-bar" type="text" size="50" />
+    <div id="search-results">
+    </div>
 
-  <input id="search-bar" type="text" size="50" />
-  <div id="search-results">
-  </div>
-
-  <div id="examples-container">
+    <div id="examples-container">
     <h1 id="examples">examples</h1>
     <div id="results">
     </div>
 
-</body>
-
+  </body>
 </html>
