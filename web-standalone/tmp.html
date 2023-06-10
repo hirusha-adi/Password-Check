@@ -38,6 +38,61 @@
         }
     </style>
 
+    <style>
+        /* Custom styles */
+        .result {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .result td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .result td:nth-child(1) {
+            font-weight: bold;
+            background-color: #f0f0f0;
+        }
+
+        .result td:nth-child(2) {
+            text-align: right;
+            background-color: #fff;
+        }
+
+        .result td:nth-child(3) {
+            text-align: left;
+            background-color: #fff;
+        }
+
+        /* Mobile styles */
+        @media only screen and (max-width: 480px) {
+            .result td {
+                display: block;
+                width: 100%;
+            }
+
+            .result td:nth-child(1) {
+                text-align: center;
+                background-color: #fff;
+            }
+
+            .result td:nth-child(2),
+            .result td:nth-child(3) {
+                text-align: center;
+                background-color: #f0f0f0;
+            }
+
+            .result tr:nth-child(even) td {
+                background-color: #f9f9f9;
+            }
+        }
+    </style>
+
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
